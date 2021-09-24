@@ -24,7 +24,7 @@ export const TicketTable = ({ tickets }) => {
         ) : (
           <tr>
             <td colSpan="4" className="text-center">
-              No Tickets to show
+              No Ticket to show
             </td>
           </tr>
         )}

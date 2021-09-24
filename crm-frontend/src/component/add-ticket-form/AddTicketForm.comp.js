@@ -37,7 +37,7 @@ export const AddTicketForm = ({
                     onChange={handleOnchange}
                   />
                   <Form.Text className="text-danger">
-                    {frmDataError.subject && "Subject is required*"}
+                    {frmDataError.subject && "Subject is required!"}
                   </Form.Text>
                 </Col>
               </Form.Group>

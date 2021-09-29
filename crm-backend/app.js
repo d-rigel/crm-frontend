@@ -17,7 +17,7 @@ const connectDB = require("./config/db");
 connectDB();
 
 //API security
-app.use(helmet());
+// app.use(helmet());
 
 //handle CORS error
 app.use(cors());

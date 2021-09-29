@@ -1,0 +1,27 @@
+### User sign up endpoint
+
+POST http://localhost:5000/v1/user
+Content-Type: application/json
+
+{
+    "name": "Dev-rigel",
+    "company": "Company name",
+    "address": "323 crouther",
+    "phone": "08091684654",
+    "email": "rigel4g@gmail.com",
+    "password": "123434432"
+}
+
+### User sign in endpoint
+
+POST http://localhost:5000/v1/user/login
+Content-Type: application/json
+
+{
+    "email": "rigel4g@gmail.com",
+    "password": "123434432"
+    
+}
+
+
+

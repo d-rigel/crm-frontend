@@ -1,6 +1,8 @@
 const express = require("express");
 const { insertUser, getUserByEmail } = require("../model/user/User.model");
 const { hashPassword, comparePassword } = require("../helpers/bcrypt.helper");
+const { createAccessJWT, createRefreshJWT } = require("../helpers/jwt.helper");
+
 const router = express.Router();
 
 router.all("/", (req, res, next) => {
@@ -8,6 +10,7 @@ router.all("/", (req, res, next) => {
   next();
 });
 
+//Register a user
 router.post("/", async (req, res) => {
   const { name, company, address, phone, email, password } = req.body;
   try {
@@ -35,7 +38,7 @@ router.post("/", async (req, res) => {
 
 //User sign in Router
 router.post("/login", async (req, res) => {
-  console.log(req.body);
+  // console.log(req.body);
   const { email, password } = req.body;
 
   //hash our password and compare with the db one
@@ -46,7 +49,7 @@ router.post("/login", async (req, res) => {
   //get user with email from db
 
   const user = await getUserByEmail(email);
-  console.log(user);
+  // console.log(user);
 
   const pwFrmDb = user && user._id ? user.password : null;
 
@@ -56,7 +59,19 @@ router.post("/login", async (req, res) => {
   const result = await comparePassword(password, pwFrmDb);
   console.log(result);
 
-  res.json({ status: " success", message: "Login Successfully!" });
+  if (!result) {
+    return res.json({ status: "error", message: "invalid email or password" });
+  }
+
+  const accessJWT = await createAccessJWT(user.email, `${user._id}`);
+  const refreshJWT = await createRefreshJWT(user.email, `${user._id}`);
+
+  res.json({
+    status: " success",
+    message: "Login Successfully!",
+    accessJWT,
+    refreshJWT,
+  });
 });
 
 module.exports = router;

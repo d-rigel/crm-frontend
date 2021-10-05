@@ -9,6 +9,7 @@ const { createAccessJWT, createRefreshJWT } = require("../helpers/jwt.helper");
 const {
   UserAuthorization,
 } = require("../middlewares/authorization.middleware");
+const { setPasswordResetPin } = require("../model/resetPin/resetPin.model");
 
 const router = express.Router();
 
@@ -91,6 +92,39 @@ router.get("/", UserAuthorization, async (req, res) => {
   //4. get user profile based on user id
 
   res.json({ user: userProfile });
+});
+
+//FOR RESET PASSWORD
+//A. Create and send password reset pin number
+//1. receive email
+//2. check if user exists for the email
+//3. create unique 6 digit pin
+//4. save pin and email in database
+//5. email the pin
+
+//B. Update password in DB
+//1. receive email, pin and new Password
+//2. validate pin
+//3. encrypt new password
+//4. update password in db
+//5. send email notification
+
+//C. Server side form validation
+//1. create middleware to validate form data
+
+router.post("/reset-password", async (req, res) => {
+  const { email } = req.body;
+  const user = await getUserByEmail(email);
+
+  if (user && user._id) {
+    const setpin = await setPasswordResetPin(email);
+    return res.json(setpin);
+  }
+  res.json({
+    status: "error",
+    message:
+      "If the email exist in our database, the passoword reset pin will be sent shortly",
+  });
 });
 
 module.exports = router;

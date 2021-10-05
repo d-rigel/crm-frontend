@@ -4,35 +4,48 @@ POST http://localhost:5000/v1/user
 Content-Type: application/json
 
 {
-    "name": "Dev-rigel",
+    "name": "Nnadozie",
     "company": "Company name",
     "address": "323 crouther",
-    "phone": "08091684654",
-    "email": "rigel4g@gmail.com",
-    "password": "123434432"
+    "phone": "1234455343",
+    "email": "rigel5g@gmail.com",
+    "password": "123434454"
 }
 
 ### User sign in endpoint
-
+//123434432
 POST http://localhost:5000/v1/user/login
 Content-Type: application/json
 
 {
-    "email": "rigel4g@gmail.com",
-    "password": "123434432"
+    "email": "rigel5g@gmail.com",
+    "password": "123434454"
     
 }
 
 ### Get a  User profile endpoint
 
 GET http://localhost:5000/v1/user
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJpZ2VsNGdAZ21haWwuY29tIiwiaWF0IjoxNjMzNDMxMDIwLCJleHAiOjE2MzM0MzEwODB9.BtzUOvhUV28I9RvPLcu-PCeUw4pOZ_XKUXS9UKg466I
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJpZ2VsNGdAZ21haWwuY29tIiwiaWF0IjoxNjMzNDM5NjQwLCJleHAiOjE2MzM0NDA1NDB9.Y_RGnKbUT-qhurl3_V4n8hnnOgZalUcI19uZDrJUqps
+
 
 
 ### returns refresh tokens endpoint
 
 GET http://localhost:5000/v1/tokens
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJpZ2VsNGdAZ21haWwuY29tIiwiaWF0IjoxNjMzNDMwOTQzLCJleHAiOjE2MzYwMjI5NDN9.r7I-_S9YqjQ-ttCTP68XWbKQeleXOC0xCag9_Vvm4WA
+
+
+
+### User sign in endpoint
+
+POST http://localhost:5000/v1/user/reset-password
+Content-Type: application/json
+
+{
+    "email": "rigel5g@gmail.com"
+    
+}
 
 
 

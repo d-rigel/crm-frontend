@@ -9,7 +9,7 @@ const JWT_ACCESS_SECRET_FRESH = config.get("JWT_ACCESS_SECRET_FRESH");
 const createAccessJWT = async (email, _id) => {
   try {
     const accessJWT = await jwt.sign({ email }, JWT_ACCESS_SECRET, {
-      expiresIn: "15m",
+      expiresIn: "1m",
     });
     await setJWT(accessJWT, _id);
 
@@ -33,7 +33,25 @@ const createRefreshJWT = async (email, _id) => {
   }
 };
 
+const verifyAccessJWT = (userJWT) => {
+  try {
+    return Promise.resolve(jwt.verify(userJWT, JWT_ACCESS_SECRET));
+  } catch (error) {
+    return Promise.resolve(error);
+  }
+};
+
+const verifyRefreshJWT = (userJWT) => {
+  try {
+    return Promise.resolve(jwt.verify(userJWT, JWT_ACCESS_SECRET_FRESH));
+  } catch (error) {
+    return Promise.resolve(error);
+  }
+};
+
 module.exports = {
   createAccessJWT,
   createRefreshJWT,
+  verifyAccessJWT,
+  verifyRefreshJWT,
 };

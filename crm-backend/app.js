@@ -47,9 +47,13 @@ app.use(express.json());
 //load routes
 const userRouter = require("./src/routers/user.router");
 const ticketRouter = require("./src/routers/ticket.router");
+const tokensRouter = require("./src/routers/tokens.router");
 
 //users Routers
 app.use("/v1/user", userRouter);
+
+//token Routers
+app.use("/v1/tokens", tokensRouter);
 
 //ticket Routers
 app.use("/v1/ticket", ticketRouter);

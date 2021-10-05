@@ -1,7 +1,14 @@
 const express = require("express");
-const { insertUser, getUserByEmail } = require("../model/user/User.model");
+const {
+  insertUser,
+  getUserByEmail,
+  getUserById,
+} = require("../model/user/User.model");
 const { hashPassword, comparePassword } = require("../helpers/bcrypt.helper");
 const { createAccessJWT, createRefreshJWT } = require("../helpers/jwt.helper");
+const {
+  UserAuthorization,
+} = require("../middlewares/authorization.middleware");
 
 const router = express.Router();
 
@@ -72,6 +79,18 @@ router.post("/login", async (req, res) => {
     accessJWT,
     refreshJWT,
   });
+});
+
+//get user profile endpoint
+router.get("/", UserAuthorization, async (req, res) => {
+  //As if Getting user data from db
+  const _id = req.userId;
+
+  const userProfile = await getUserById(_id);
+  //3. extract user id
+  //4. get user profile based on user id
+
+  res.json({ user: userProfile });
 });
 
 module.exports = router;

@@ -23,5 +23,19 @@ Content-Type: application/json
     
 }
 
+### Get a  User profile endpoint
+
+GET http://localhost:5000/v1/user
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJpZ2VsNGdAZ21haWwuY29tIiwiaWF0IjoxNjMzNDMxMDIwLCJleHAiOjE2MzM0MzEwODB9.BtzUOvhUV28I9RvPLcu-PCeUw4pOZ_XKUXS9UKg466I
+
+
+### returns refresh tokens endpoint
+
+GET http://localhost:5000/v1/tokens
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJpZ2VsNGdAZ21haWwuY29tIiwiaWF0IjoxNjMzNDMwOTQzLCJleHAiOjE2MzYwMjI5NDN9.r7I-_S9YqjQ-ttCTP68XWbKQeleXOC0xCag9_Vvm4WA
+
+
+
+
 
 

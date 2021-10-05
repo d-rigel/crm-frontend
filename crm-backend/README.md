@@ -33,3 +33,11 @@ in the project.
 | 3   | "/v1/ticket"                   | POST  | TODO     | Yes        | Create a new ticket                     |
 | 4   | "/v1/ticket/{id}"              | PUT   | TODO     | Yes        | Update ticket details ie. reply message |
 | 5   | "/v1/ticket/close-ticket/{id}" | PUT   | Yes      | Yes        | Update ticket details ie. reply message |
+
+### Tokens API Resources
+
+All the Tokens API router follows "/v1/token"
+
+# | Routers | Verbs | Progress | Is Private | Description
+
+1 | "/v1/tokens" | GET | Done | No | Get a fresh access JWT

@@ -10,6 +10,7 @@ const {
   UserAuthorization,
 } = require("../middlewares/authorization.middleware");
 const { setPasswordResetPin } = require("../model/resetPin/resetPin.model");
+const { mailProcessor } = require("../helpers/email.helper");
 
 const router = express.Router();
 
@@ -112,16 +113,33 @@ router.get("/", UserAuthorization, async (req, res) => {
 //C. Server side form validation
 //1. create middleware to validate form data
 
+// router.post("/reset-password", async (req, res) => {
+//   const { email } = req.body;
+//   const user = await getUserByEmail(email);)}
+
 router.post("/reset-password", async (req, res) => {
   const { email } = req.body;
+  console.log(email);
   const user = await getUserByEmail(email);
-
   if (user && user._id) {
     const setpin = await setPasswordResetPin(email);
-    return res.json(setpin);
+    const result = await mailProcessor(email, setpin.pin);
+    if (result && result.messageId) {
+      return res.json({
+        status: "success",
+        message:
+          "If the email exist in our database, the passoword reset pin will be sent shortly",
+      });
+    }
+
+    // return res.json({
+    //   status: "error",
+    //   message:
+    //     "Unable to process your request at the moment. Please try again later",
+    // });
   }
-  res.json({
-    status: "error",
+  return res.json({
+    status: "success",
     message:
       "If the email exist in our database, the passoword reset pin will be sent shortly",
   });

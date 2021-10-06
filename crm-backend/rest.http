@@ -37,13 +37,13 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJpZ2VsNGdAZ21h
 
 
 
-### User sign in endpoint
+### Reset Password endpoint
 
 POST http://localhost:5000/v1/user/reset-password
 Content-Type: application/json
 
 {
-    "email": "rigel5g@gmail.com"
+    "email": "rigel4g@gmail.com"
     
 }
 

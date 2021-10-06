@@ -19,6 +19,36 @@ const setPasswordResetPin = async (email) => {
   });
 };
 
+const getPinByEmailPin = (email, pin) => {
+  return new Promise((resolve, reject) => {
+    try {
+      ResetPinSchema.findOne({ email, pin }, (error, data) => {
+        if (error) {
+          console.log(error);
+        }
+        resolve(data);
+      });
+    } catch (error) {
+      reject(error);
+      console.log(error);
+    }
+  });
+};
+
+const deletePin = (email, pin) => {
+  try {
+    ResetPinSchema.findByIdAndDelete({ email, pin }, (error, data) => {
+      if (error) {
+        console.log(error);
+      }
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 module.exports = {
   setPasswordResetPin,
+  getPinByEmailPin,
+  deletePin,
 };

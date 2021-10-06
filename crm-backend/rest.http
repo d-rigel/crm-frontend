@@ -4,24 +4,25 @@ POST http://localhost:5000/v1/user
 Content-Type: application/json
 
 {
-    "name": "Nnadozie",
+    "name": "Emmanuel",
     "company": "Company name",
-    "address": "323 crouther",
-    "phone": "1234455343",
-    "email": "rigel5g@gmail.com",
-    "password": "123434454"
+    "address": "33 crouth",
+    "phone": "1243454323",
+    "email": "rigel4g@gmail.com",
+    "password": "123456789"
 }
 
-### User sign in endpoint
+### User login in endpoint
 //123434432
 POST http://localhost:5000/v1/user/login
 Content-Type: application/json
 
 {
-    "email": "rigel5g@gmail.com",
-    "password": "123434454"
+    "email": "rigel4g@gmail.com",
+    "password": "passworpp"
     
 }
+//123434454
 
 ### Get a  User profile endpoint
 
@@ -44,6 +45,19 @@ Content-Type: application/json
 
 {
     "email": "rigel4g@gmail.com"
+    
+}
+
+
+### Update new Password endpoint
+
+PATCH  http://localhost:5000/v1/user/reset-password
+Content-Type: application/json
+
+{
+    "email": "rigel4g@gmail.com",
+    "pin":761821 ,
+    "newPassword": "passworp"
     
 }
 

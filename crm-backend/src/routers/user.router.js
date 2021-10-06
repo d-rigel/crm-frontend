@@ -19,6 +19,10 @@ const {
   mailProcessor,
   mailProcessorUpdate,
 } = require("../helpers/email.helper");
+const {
+  resetPassReqValidation,
+  updatePassReqValidation,
+} = require("../middlewares/formValidation.middleware");
 
 const router = express.Router();
 
@@ -111,7 +115,7 @@ router.get("/", UserAuthorization, async (req, res) => {
 //4. save pin and email in database
 //5. email the pin
 
-router.post("/reset-password", async (req, res) => {
+router.post("/reset-password", resetPassReqValidation, async (req, res) => {
   const { email } = req.body;
 
   const user = await getUserByEmail(email);
@@ -144,7 +148,7 @@ router.post("/reset-password", async (req, res) => {
 //C. Server side form validation
 //1. create middleware to validate form data
 
-router.patch("/reset-password", async (req, res) => {
+router.patch("/reset-password", updatePassReqValidation, async (req, res) => {
   const { email, pin, newPassword } = req.body;
 
   const getPin = await getPinByEmailPin(email, pin);

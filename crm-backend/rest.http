@@ -19,7 +19,7 @@ Content-Type: application/json
 
 {
     "email": "rigel4g@gmail.com",
-    "password": "passworpp"
+    "password": "passworp"
     
 }
 //123434454
@@ -27,7 +27,7 @@ Content-Type: application/json
 ### Get a  User profile endpoint
 
 GET http://localhost:5000/v1/user
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJpZ2VsNGdAZ21haWwuY29tIiwiaWF0IjoxNjMzNDM5NjQwLCJleHAiOjE2MzM0NDA1NDB9.Y_RGnKbUT-qhurl3_V4n8hnnOgZalUcI19uZDrJUqps
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJpZ2VsNGdAZ21haWwuY29tIiwiaWF0IjoxNjMzNTkzNjg3LCJleHAiOjE2MzM1OTQ1ODd9.qzTzaUYfjt7NOobFYQx-P2BLO3QYtfi9i3kg0imSWAc
 
 
 
@@ -61,6 +61,14 @@ Content-Type: application/json
      
     
 }
+
+
+### User logout endpoint
+
+DELETE  http://localhost:5000/v1/user/logout
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJpZ2VsNGdAZ21haWwuY29tIiwiaWF0IjoxNjMzNTkzODIyLCJleHAiOjE2MzM1OTQ3MjJ9.Q0tT_u75SypJ25f7N7MOKuno4ps_ScrbEqq9PwpxGts
+
+
 
 
 

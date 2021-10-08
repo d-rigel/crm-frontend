@@ -69,6 +69,18 @@ DELETE  http://localhost:5000/v1/user/logout
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJpZ2VsNGdAZ21haWwuY29tIiwiaWF0IjoxNjMzNTkzODIyLCJleHAiOjE2MzM1OTQ3MjJ9.Q0tT_u75SypJ25f7N7MOKuno4ps_ScrbEqq9PwpxGts
 
 
+### ticket endpoint
+
+GET  http://localhost:5000/v1/ticket
+
+### ticket endpoint
+
+POST  http://localhost:5000/v1/ticket
+Content-Type: application/json
+
+
+
+
 
 
 

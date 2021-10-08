@@ -4,6 +4,9 @@ const {
   insertTicket,
   getTickets,
   getTicketById,
+  updateClientReply,
+  updateStatusClose,
+  deleteTicket,
 } = require("../model/ticket/Ticket.model");
 const {
   UserAuthorization,
@@ -96,6 +99,86 @@ router.get("/:ticketId", UserAuthorization, async (req, res) => {
     return res.json({
       status: "success",
       result,
+    });
+  } catch (error) {
+    res.json({
+      status: "error",
+      message: error.message,
+    });
+  }
+});
+
+//Update reply message from client
+router.put("/:ticketId", UserAuthorization, async (req, res) => {
+  try {
+    const { message, sender } = req.body;
+    const { ticketId } = req.params;
+    // const clientId = req.userId
+
+    const result = await updateClientReply(ticketId, message, sender);
+    console.log(result);
+    if (result._id) {
+      return res.json({
+        status: "success",
+        message: "Your message updated",
+      });
+    }
+    return res.json({
+      status: "error",
+      message: "Unable to update your message, please try again later",
+    });
+  } catch (error) {
+    res.json({
+      status: "error",
+      message: error.message,
+    });
+  }
+});
+
+//Update reply message from client
+router.patch("/close-ticket/:ticketId", UserAuthorization, async (req, res) => {
+  try {
+    const { ticketId } = req.params;
+    const clientId = req.userId;
+
+    const result = await updateStatusClose(ticketId, clientId);
+
+    if (result._id) {
+      return res.json({
+        status: "success",
+        message: "The ticket has been closed",
+      });
+    }
+    return res.json({
+      status: "error",
+      message: "Unable to update the ticket",
+    });
+  } catch (error) {
+    res.json({
+      status: "error",
+      message: error.message,
+    });
+  }
+});
+
+//Delete ticket
+//Update reply message from client
+router.delete("/:ticketId", UserAuthorization, async (req, res) => {
+  try {
+    const { ticketId } = req.params;
+    const clientId = req.userId;
+
+    const result = await deleteTicket(ticketId, clientId);
+
+    if (result._id) {
+      return res.json({
+        status: "success",
+        message: "ticket deleted",
+      });
+    }
+    return res.json({
+      status: "error",
+      message: "Unable to delete ticket",
     });
   } catch (error) {
     res.json({

@@ -1,6 +1,9 @@
 const express = require("express");
 const router = express.Router();
-const { insertTicket } = require("../model/ticket/Ticket.model");
+const { insertTicket, getTickets } = require("../model/ticket/Ticket.model");
+const {
+  UserAuthorization,
+} = require("../middlewares/authorization.middleware");
 
 //Workflow
 // - create url endpoints
@@ -17,13 +20,15 @@ const { insertTicket } = require("../model/ticket/Ticket.model");
 //   res.json({ message: "return form ticket router" });
 // });
 
-router.post("/", async (req, res) => {
+//Create a ticket
+router.post("/", UserAuthorization, async (req, res) => {
   try {
     const { subject, sender, message } = req.body;
-    // console.log(req.body);
+    // console.log(req);
+    const userId = req.userId;
 
     const ticketObj = {
-      clientId: "615e0ba1d2c64cd3f97dbc64",
+      clientId: userId,
       subject,
       conversations: [
         {
@@ -44,6 +49,27 @@ router.post("/", async (req, res) => {
     res.json({
       status: "error",
       message: "Unable to create the ticket, please try again later",
+    });
+  } catch (error) {
+    res.json({
+      status: "error",
+      message: error.message,
+    });
+  }
+});
+
+//Get all ticket for a specific user
+router.get("/", UserAuthorization, async (req, res) => {
+  try {
+    // console.log(req);
+    const userId = req.userId;
+
+    const result = await getTickets(userId);
+    console.log(result);
+
+    return res.json({
+      status: "success",
+      result,
     });
   } catch (error) {
     res.json({

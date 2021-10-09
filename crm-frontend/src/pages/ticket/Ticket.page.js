@@ -16,7 +16,7 @@ export const Ticket = () => {
   const [ticket, setTicket] = useState("");
   useEffect(() => {
     for (let index = 0; index < tickets.length; index++) {
-      if (tickets[index].id == tId) {
+      if (tickets[index].id === tId) {
         setTicket(tickets[index]);
         continue;
       }

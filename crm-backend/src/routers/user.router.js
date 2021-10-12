@@ -90,7 +90,7 @@ router.post("/login", async (req, res) => {
   const refreshJWT = await createRefreshJWT(user.email, `${user._id}`);
 
   res.json({
-    status: " success",
+    status: "success",
     message: "Login Successfully!",
     accessJWT,
     refreshJWT,

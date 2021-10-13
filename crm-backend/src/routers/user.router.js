@@ -103,10 +103,18 @@ router.get("/", UserAuthorization, async (req, res) => {
   const _id = req.userId;
 
   const userProfile = await getUserById(_id);
+
+  const { name, email } = userProfile;
   //3. extract user id
   //4. get user profile based on user id
 
-  res.json({ user: userProfile });
+  res.json({
+    user: {
+      _id,
+      name,
+      email,
+    },
+  });
 });
 
 //FOR RESET PASSWORD

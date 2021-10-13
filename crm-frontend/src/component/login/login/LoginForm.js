@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -11,13 +11,19 @@ import { loginPending, loginSuccess, loginFail } from "./loginSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { userLogin } from "../../../api/userApi";
 import { useHistory } from "react-router-dom";
+import { getuserProfile } from "../../../pages/dashboard/userAction";
 
 export const LoginForm = ({ formSwitcher }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
-  const { isLoading, isAuth, error } = useSelector((state) => state.login);
   const history = useHistory();
+  const { isLoading, isAuth, error } = useSelector((state) => state.login);
+
+  useEffect(() => {
+    sessionStorage.getItem("accessToken") && history.push("/dashboard");
+  }, [isAuth, history]);
+
   const handleOnchange = (e) => {
     const { name, value } = e.target;
 
@@ -68,6 +74,7 @@ export const LoginForm = ({ formSwitcher }) => {
       }
 
       dispatch(loginSuccess());
+      dispatch(getuserProfile());
       history.push("/dashboard");
     } catch (error) {
       console.log(error);

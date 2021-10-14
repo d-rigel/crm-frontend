@@ -6,7 +6,7 @@ export const getAlltickets = async () => {
       const result = await axios.get("http://localhost:5000/v1/ticket", {
         headers: {
           Authorization:
-            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJpZ2VsNGdAZ21haWwuY29tIiwiaWF0IjoxNjMzODgyOTAyLCJleHAiOjE2MzM4ODM4MDJ9.N2eCaJ-xkrX25Nd9iUqnzxrfwI1pLDrPzXSAXQEkrMw",
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJpZ2VsNGdAZ21haWwuY29tIiwiaWF0IjoxNjM0MjM5Mjg3LCJleHAiOjE2MzQyNDAxODd9.Uhg60wNXz1mSNZ6GA3CiEMFzIrx9DHaQbxMFfjUw8ug",
         },
       });
       resolve(result);

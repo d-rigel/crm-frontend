@@ -15,10 +15,14 @@ export const PrivateRoute = ({ children, ...rest }) => {
       const result = await fetchNewAccessJWT();
       result && dispatch(loginSuccess());
     };
-    updateNewAccessJWt();
+    !sessionStorage.getItem("accessToken") &&
+      localStorage.getItem("crmsite") &&
+      updateNewAccessJWt();
 
-    sessionStorage.getItem("accessToken") && dispatch(loginSuccess());
-  }, [dispatch]);
+    !isAuth &&
+      sessionStorage.getItem("accessToken") &&
+      dispatch(loginSuccess());
+  }, [dispatch, isAuth]);
   return (
     <Route
       {...rest}

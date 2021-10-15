@@ -19,7 +19,7 @@ Content-Type: application/json
 
 {
     "email": "rigel4g@gmail.com",
-    "password": "passworp"
+    "password": "123456789"
     
 }
 //123434454
@@ -64,24 +64,45 @@ Content-Type: application/json
 
 
 ### User logout endpoint
-
 DELETE  http://localhost:5000/v1/user/logout
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJpZ2VsNGdAZ21haWwuY29tIiwiaWF0IjoxNjMzNTkzODIyLCJleHAiOjE2MzM1OTQ3MjJ9.Q0tT_u75SypJ25f7N7MOKuno4ps_ScrbEqq9PwpxGts
 
 
-### ticket endpoint
+### create new ticket endpoint
+POST http://localhost:5000/v1/ticket
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJpZ2VsNGdAZ21haWwuY29tIiwiaWF0IjoxNjMzNTkzODIyLCJleHAiOjE2MzM1OTQ3MjJ9.Q0tT_u75SypJ25f7N7MOKuno4ps_ScrbEqq9PwpxGts
+{
+    "subject": "This issue is test",
+    "sender": "Emmanuel",
+    "message": "This is is just created for test and should be treated as non serious"
 
+}
+
+### get all ticket endpoint
 GET  http://localhost:5000/v1/ticket
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJpZ2VsNGdAZ21haWwuY29tIiwiaWF0IjoxNjM0MjgxODE5LCJleHAiOjE2MzQyODI3MTl9.F7wp54hwF5oWgnh_gc-YbZK5YchktrSS9LC0XefPMoE
 
-### ticket endpoint
+### get single ticket endpoint
+GET http://localhost:5000/v1/ticket/61601bc453763fcc5b749b96
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJpZ2VsNGdAZ21haWwuY29tIiwiaWF0IjoxNjMzNTkzODIyLCJleHAiOjE2MzM1OTQ3MjJ9.Q0tT_u75SypJ25f7N7MOKuno4ps_ScrbEqq9PwpxGts
 
-POST  http://localhost:5000/v1/ticket
+### Reply message to the ticket
+PUT  http://localhost:5000/v1/ticket/61601bc453763fcc5b749b96
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJpZ2VsNGdAZ21haWwuY29tIiwiaWF0IjoxNjMzNTkzODIyLCJleHAiOjE2MzM1OTQ3MjJ9.Q0tT_u75SypJ25f7N7MOKuno4ps_ScrbEqq9PwpxGts
 Content-Type: application/json
 
+{
+    "message": "This is he 222 reply",
+    "sender": "Nnadozie"
+}
 
+### Close the ticket
+PATCH http://localhost:5000/v1/ticket/close-ticket/61601ae153763fcc5b749b91
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJpZ2VsNGdAZ21haWwuY29tIiwiaWF0IjoxNjMzNTkzODIyLCJleHAiOjE2MzM1OTQ3MjJ9.Q0tT_u75SypJ25f7N7MOKuno4ps_ScrbEqq9PwpxGts
 
-
-
+### Delete the ticket
+DELETE http://localhost:5000/v1/ticket/61606209d1a59377fcc087fe
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJpZ2VsNGdAZ21haWwuY29tIiwiaWF0IjoxNjMzNTkzODIyLCJleHAiOjE2MzM1OTQ3MjJ9.Q0tT_u75SypJ25f7N7MOKuno4ps_ScrbEqq9PwpxGts
 
 
 

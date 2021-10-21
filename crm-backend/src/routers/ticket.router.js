@@ -82,7 +82,7 @@ router.get("/", UserAuthorization, async (req, res) => {
     const userId = req.userId;
 
     const result = await getTickets(userId);
-    console.log(result);
+    // console.log(result);
 
     return res.json({
       status: "success",

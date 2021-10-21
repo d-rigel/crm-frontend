@@ -18,7 +18,7 @@ function App() {
             <Entry />
           </Route>
           {/* <DefaultLayout> */}
-          <PrivateRoute path="/dashboard">
+          <PrivateRoute exact path="/dashboard">
             <Dashboard />
           </PrivateRoute>
           <PrivateRoute path="/add-ticket">
@@ -27,7 +27,7 @@ function App() {
           <PrivateRoute path="/tickets">
             <TicketLists />
           </PrivateRoute>
-          <PrivateRoute path="/ticket/:tId">
+          <PrivateRoute exact path="/ticket/:tId">
             <Ticket />
           </PrivateRoute>
           {/* </DefaultLayout> */}

@@ -22,9 +22,8 @@ export const Ticket = () => {
   // const [message, setMessage] = useState("");
   // const [ticket, setTicket] = useState("");
   const dispatch = useDispatch();
-  const { isLoading, error, selectedTicket, replyMsg } = useSelector(
-    (state) => state.tickets
-  );
+  const { isLoading, error, selectedTicket, replyMsg, replyTicketError } =
+    useSelector((state) => state.tickets);
   // const { replyMsg } = useSelector((state) => state.tickets);
 
   // useEffect(() => {
@@ -52,6 +51,9 @@ export const Ticket = () => {
         <Col>
           {isLoading && <Spinner variant="primary" animation="border" />}
           {error && <Alert variant="danger">{error}</Alert>}
+          {replyTicketError && (
+            <Alert variant="danger">{replyTicketError}</Alert>
+          )}
           {replyMsg && <Alert variant="success">{replyMsg}</Alert>}
         </Col>
       </Row>

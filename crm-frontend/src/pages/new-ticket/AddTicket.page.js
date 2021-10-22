@@ -1,55 +1,55 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { BreadcrumbComp } from "../../component/breadcrumb/Breadcrumb.comp";
 import { AddTicketForm } from "../../component/add-ticket-form/AddTicketForm.comp";
-import { shortText } from "../../utils/validation";
+// import { shortText } from "../../utils/validation";
 
-const initialFrmDt = {
-  subject: "",
-  issuedDate: "",
-  detail: "",
-};
+// const initialFrmDt = {
+//   subject: "",
+//   issuedDate: "",
+//   detail: "",
+// };
 
-const initialFrmError = {
-  subject: false,
-  issuedDate: false,
-  detail: false,
-};
+// const initialFrmError = {
+//   subject: false,
+//   issuedDate: false,
+//   detail: false,
+// };
 
 export const AddTicket = () => {
-  const [frmData, setFrmData] = useState(initialFrmDt);
-  const [frmDataError, setFrmDataError] = useState(initialFrmError);
+  // const [frmData, setFrmData] = useState(initialFrmDt);
+  // const [frmDataError, setFrmDataError] = useState(initialFrmError);
 
-  useEffect(() => {}, [frmData, frmDataError]);
+  // useEffect(() => {}, [frmData, frmDataError]);
 
-  const handleOnchange = (e) => {
-    e.preventDefault();
-    const { name, value } = e.target;
+  // const handleOnchange = (e) => {
+  //   e.preventDefault();
+  //   const { name, value } = e.target;
 
-    setFrmData({
-      ...frmData,
-      [name]: value,
-    });
-    // console.log(name, value);
-  };
+  //   setFrmData({
+  //     ...frmData,
+  //     [name]: value,
+  //   });
+  //   // console.log(name, value);
+  // };
 
-  const handleOnSubmit = async (e) => {
-    e.preventDefault();
+  // const handleOnSubmit = async (e) => {
+  //   e.preventDefault();
 
-    setFrmDataError(initialFrmError);
+  //   setFrmDataError(initialFrmError);
 
-    const isSubjectValid = await shortText(frmData.subject);
+  //   const isSubjectValid = await shortText(frmData.subject);
 
-    setFrmDataError({
-      ...initialFrmError,
-      subject: !isSubjectValid,
-    });
-    console.log("Click to submit", frmData);
+  //   setFrmDataError({
+  //     ...initialFrmError,
+  //     subject: !isSubjectValid,
+  //   });
+  //   console.log("Click to submit", frmData);
 
-    setFrmData(initialFrmDt);
-  };
+  //   setFrmData(initialFrmDt);
+  // };
 
   return (
     <Container>
@@ -61,10 +61,10 @@ export const AddTicket = () => {
       <Row>
         <Col>
           <AddTicketForm
-            handleOnchange={handleOnchange}
-            handleOnSubmit={handleOnSubmit}
-            frmDt={frmData}
-            frmDataError={frmDataError}
+          // handleOnchange={handleOnchange}
+          // handleOnSubmit={handleOnSubmit}
+          // frmDt={frmData}
+          // frmDataError={frmDataError}
           />
         </Col>
       </Row>

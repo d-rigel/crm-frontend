@@ -4,15 +4,19 @@ import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Container from "react-bootstrap/esm/Container";
+import Spinner from "react-bootstrap/Spinner";
+import Alert from "react-bootstrap/Alert";
+import { userRegistration } from "./regUserAction";
+import { useDispatch, useSelector } from "react-redux";
 
 const initialState = {
-  name: "",
-  phone: "",
-  email: "",
-  company: "",
-  address: "",
-  password: "",
-  comfirmPass: "",
+  name: "Dev Emmanuel",
+  phone: "07032184931",
+  email: "alozie4God@gmail.com",
+  company: "dev-rigel",
+  address: "#12 sam st.",
+  password: "@Password12",
+  comfirmPass: "@Password12",
 };
 
 const passVerificationError = {
@@ -25,8 +29,13 @@ const passVerificationError = {
 };
 
 export const RegistrationForm = () => {
+  const dispatch = useDispatch();
   const [newUser, setNewUser] = useState(initialState);
   const [passwordError, setPasswordError] = useState(passVerificationError);
+
+  const { isLoading, status, message } = useSelector(
+    (state) => state.registration
+  );
 
   useEffect(() => {}, [newUser]);
 
@@ -62,7 +71,12 @@ export const RegistrationForm = () => {
   const handleOnSubmit = (e) => {
     e.preventDefault();
     console.log(newUser);
+    dispatch(userRegistration(newUser));
   };
+
+  //Connect user regitration form to backend REST API and manage network state with Redux Toolkit
+  //email user to a link to verify their email
+  //create frontend page to handle the email verification that client receives in their email
 
   return (
     <Container>
@@ -72,6 +86,12 @@ export const RegistrationForm = () => {
         </Col>
       </Row>
       <hr />
+      <Row>
+        <Col>
+          {status === "success" && <Alert variant="success">{message}</Alert>}
+          {status === "error" && <Alert variant="danger">{message}</Alert>}
+        </Col>
+      </Row>
       <Row>
         <Col>
           <Form onSubmit={handleOnSubmit}>
@@ -191,6 +211,7 @@ export const RegistrationForm = () => {
               disabled={Object.values(passwordError).includes(false)}>
               Submit
             </Button>
+            {isLoading && <Spinner variant="info" animation="border"></Spinner>}
           </Form>
         </Col>
         <Row className="py-2">

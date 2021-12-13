@@ -96,7 +96,7 @@ router.get("/", UserAuthorization, async (req, res) => {
   }
 });
 
-//Get all ticket for a specific user
+//Get all  a specific user
 router.get("/:ticketId", UserAuthorization, async (req, res) => {
   try {
     const { ticketId } = req.params;

@@ -93,7 +93,7 @@ export const LoginForm = ({ formSwitcher }) => {
     console.log(email);
   };
   return (
-    <div>
+    <div className="login__form">
       <Container>
         <Row>
           <Col sm={12}>
@@ -137,6 +137,13 @@ export const LoginForm = ({ formSwitcher }) => {
             <a href="#!" onClick={() => formSwitcher("reset")}>
               Forget Password?
             </a>
+          </Col>
+        </Row>
+
+        <Row className="mt-4">
+          <Col>
+            Are you new here? {""}
+            <a href="/registration">Register Now</a>
           </Col>
         </Row>
       </Container>

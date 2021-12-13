@@ -13,6 +13,7 @@ export const getAlltickets = async () => {
           Authorization: sessionStorage.getItem("accessToken"),
         },
       });
+      console.log("result from all tickets", result);
       resolve(result);
     } catch (error) {
       reject(error);
@@ -46,7 +47,7 @@ export const updateReplyTicket = async (_id, msgObj) => {
           Authorization: sessionStorage.getItem("accessToken"),
         },
       });
-      // console.log(result.data);
+      console.log("from update reply ticket", result.data);
       resolve(result.data);
     } catch (error) {
       reject(error);

@@ -9,9 +9,11 @@ import { BreadcrumbComp } from "../../component/breadcrumb/Breadcrumb.comp";
 import { Link } from "react-router-dom";
 import { fetchAllTickets } from "../../pages/ticket-list/ticketsAction";
 import { useSelector, useDispatch } from "react-redux";
+
 export const Dashboard = () => {
   const dispatch = useDispatch();
   const { tickets } = useSelector((state) => state.tickets);
+  console.log(tickets);
 
   useEffect(() => {
     if (!tickets.length) {

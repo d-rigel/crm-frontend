@@ -11,6 +11,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { openNewTicket } from "./addTicketAction";
 import Spinner from "react-bootstrap/Spinner";
 import { Alert } from "react-bootstrap";
+import { resetSuccessMsg } from "./addTicketSlice";
 
 export const AddTicketForm = () => {
   const dispatch = useDispatch();
@@ -36,7 +37,12 @@ export const AddTicketForm = () => {
   const [frmData, setFrmData] = useState(initialFrmDt);
   const [frmDataError, setFrmDataError] = useState(initialFrmError);
 
-  useEffect(() => {}, [frmData, frmDataError]);
+  useEffect(() => {
+    return () => {
+      //using as a component unmount i.e running a cleanup
+      successMsg && dispatch(resetSuccessMsg());
+    };
+  }, [frmData, frmDataError, dispatch]);
 
   const handleOnchange = (e) => {
     e.preventDefault();

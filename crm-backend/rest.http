@@ -70,22 +70,21 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJpZ2VsNGdAZ21h
 
 ### create new ticket endpoint
 POST http://localhost:5000/v1/ticket
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJpZ2VsNGdAZ21haWwuY29tIiwiaWF0IjoxNjMzNTkzODIyLCJleHAiOjE2MzM1OTQ3MjJ9.Q0tT_u75SypJ25f7N7MOKuno4ps_ScrbEqq9PwpxGts
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IkRhbkBnbWFpbC5jb20iLCJpYXQiOjE2Mzg0NzcwMzEsImV4cCI6MTYzODQ3NzkzMX0.3zc5vvPzt1XbYB-tYYUOxVf5VhoQfG2S_WP29c5qaNg
 {
-    "subject": "This issue is test",
-    "sender": "Emmanuel",
-    "message": "This is is just created for test and should be treated as non serious"
+    "subject": "This issue is test second",
+    "sender": "Dan move",
+    "message": "This is is just created for test and just to let you know i'am testing"
 
 }
 
 ### get all ticket endpoint
 GET  http://localhost:5000/v1/ticket
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJpZ2VsNGdAZ21haWwuY29tIiwiaWF0IjoxNjM0MjgxODE5LCJleHAiOjE2MzQyODI3MTl9.F7wp54hwF5oWgnh_gc-YbZK5YchktrSS9LC0XefPMoE
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IkRhbkBnbWFpbC5jb20iLCJpYXQiOjE2Mzg0NzcwMzEsImV4cCI6MTYzODQ3NzkzMX0.3zc5vvPzt1XbYB-tYYUOxVf5VhoQfG2S_WP29c5qaNg
 
 ### get single ticket endpoint
 GET http://localhost:5000/v1/ticket/61601bc453763fcc5b749b96
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJpZ2VsNGdAZ21haWwuY29tIiwiaWF0IjoxNjMzNTkzODIyLCJleHAiOjE2MzM1OTQ3MjJ9.Q0tT_u75SypJ25f7N7MOKuno4ps_ScrbEqq9PwpxGts
-
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJpZ2VsNGdAZ21haWwuY29tIiwiaWF0IjoxNjM0Mjg0MDE2LCJleHAiOjE2MzQyODQ5MTZ9.VqMzindM1wQZSEP4fGty4ZrmsfZaemXPMUVVAsgfX0s
 ### Reply message to the ticket
 PUT  http://localhost:5000/v1/ticket/61601bc453763fcc5b749b96
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJpZ2VsNGdAZ21haWwuY29tIiwiaWF0IjoxNjMzNTkzODIyLCJleHAiOjE2MzM1OTQ3MjJ9.Q0tT_u75SypJ25f7N7MOKuno4ps_ScrbEqq9PwpxGts

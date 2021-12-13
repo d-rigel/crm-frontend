@@ -1,14 +1,13 @@
-.entry-page {
+.registration-page {
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow: scroll;
 }
 
-.form-box {
+.form-boxr {
   box-shadow: 0px 0px 15px -5px black;
+  margin-top: 20rem;
+  margin-bottom: 2rem;
 }
-
-/* .login__form {
-  margin-top: -2rem;
-} */

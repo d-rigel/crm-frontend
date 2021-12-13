@@ -15,6 +15,7 @@ import {
 } from "../../pages/ticket-list/ticketsAction";
 import { useDispatch, useSelector } from "react-redux";
 import { Alert } from "react-bootstrap";
+import { resetResponseMsg } from "../ticket-list/ticketsSlice";
 
 // const ticket = tickets[0];
 export const Ticket = () => {
@@ -24,6 +25,7 @@ export const Ticket = () => {
   const dispatch = useDispatch();
   const { isLoading, error, selectedTicket, replyMsg, replyTicketError } =
     useSelector((state) => state.tickets);
+  console.log(selectedTicket);
   // const { replyMsg } = useSelector((state) => state.tickets);
 
   // useEffect(() => {
@@ -38,7 +40,13 @@ export const Ticket = () => {
 
   useEffect(() => {
     dispatch(fetchSingleTicket(tId));
-  }, [tId, dispatch]);
+
+    //annonymouse func
+    return () => {
+      //running componentUnmount i.e cleanup
+      (replyMsg || replyTicketError) && dispatch(resetResponseMsg());
+    };
+  }, [tId, dispatch, replyMsg, replyTicketError]);
 
   return (
     <Container>

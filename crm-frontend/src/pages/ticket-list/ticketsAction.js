@@ -59,7 +59,7 @@ export const replyOnTicket = (_id, msgObj) => async (dispatch) => {
   dispatch(replyTicketloading());
   try {
     const result = await updateReplyTicket(_id, msgObj);
-    // console.log(result);
+    console.log(result);
     if (result.status === "error") {
       return dispatch(replyTicketFail(result.message));
     }

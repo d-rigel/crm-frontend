@@ -10,6 +10,7 @@ import { replyOnTicket } from "../../pages/ticket-list/ticketsAction";
 // export const UpdateTicket = ({ msg, handleOnChange, handleOnSubmit }) => {
 export const UpdateTicket = ({ _id }) => {
   const [message, setMessage] = useState("");
+  console.log(message);
   const {
     user: { name },
   } = useSelector((state) => state.user);

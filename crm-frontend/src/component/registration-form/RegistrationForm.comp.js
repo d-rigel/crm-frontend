@@ -11,12 +11,12 @@ import { useDispatch, useSelector } from "react-redux";
 
 const initialState = {
   name: "Dev Emmanuel",
-  phone: "07032184931",
+  phone: "0503218493",
   email: "alozie4God@gmail.com",
   company: "dev-rigel",
   address: "#12 sam st.",
   password: "@Password12",
-  comfirmPass: "@Password12",
+  confirmPass: "@Password12",
 };
 
 const passVerificationError = {
@@ -25,7 +25,7 @@ const passVerificationError = {
   hasLower: false,
   hasNumber: false,
   hasSpeclChr: false,
-  comfirmPass: false,
+  confirmPass: false,
 };
 
 export const RegistrationForm = () => {
@@ -60,18 +60,21 @@ export const RegistrationForm = () => {
       });
     }
 
-    if (name === "comfirmPass") {
+    if (name === "confirmPass") {
       setPasswordError({
         ...passwordError,
-        comfirmPass: newUser.password === value,
+        confirmPass: newUser.password === value,
       });
     }
   };
 
   const handleOnSubmit = (e) => {
     e.preventDefault();
+    const { name, phone, email, company, address, password } = newUser;
+
+    const newRegistration = { name, phone, email, company, address, password };
     console.log(newUser);
-    dispatch(userRegistration(newUser));
+    dispatch(userRegistration(newRegistration));
   };
 
   //Connect user regitration form to backend REST API and manage network state with Redux Toolkit
@@ -160,14 +163,14 @@ export const RegistrationForm = () => {
               <Form.Label>Comfirm Password</Form.Label>
               <Form.Control
                 type="password"
-                name="comfirmPass"
-                value={newUser.comfirmPass}
+                name="confirmPass"
+                value={newUser.confirmPass}
                 onChange={handleOnChange}
-                placeholder="Comfirm Password"
+                placeholder="Confirm Password"
               />
             </Form.Group>
             <Form.Text>
-              {!passwordError.comfirmPass && (
+              {!passwordError.confirmPass && (
                 <div className="text-danger mb-2">Password does not match!</div>
               )}
             </Form.Text>

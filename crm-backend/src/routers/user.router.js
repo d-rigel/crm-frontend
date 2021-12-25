@@ -5,6 +5,7 @@ const {
   getUserById,
   updatePassword,
   storeUserRefreshJWT,
+  verifyUser,
 } = require("../model/user/User.model");
 const { hashPassword, comparePassword } = require("../helpers/bcrypt.helper");
 const { createAccessJWT, createRefreshJWT } = require("../helpers/jwt.helper");
@@ -19,14 +20,18 @@ const {
 const {
   mailProcessor,
   mailProcessorUpdate,
+  newUserConfirmation,
 } = require("../helpers/email.helper");
 const {
   resetPassReqValidation,
   updatePassReqValidation,
+  newUserValidation,
 } = require("../middlewares/formValidation.middleware");
 const { deleteJWT } = require("../helpers/redis.helper");
 
 const router = express.Router();
+
+const verificationURL = "http://localhost:3000/verification/";
 
 router.all("/", (req, res, next) => {
   // res.json({ message: "return form user router" });
@@ -34,7 +39,7 @@ router.all("/", (req, res, next) => {
 });
 
 //Register a user
-router.post("/", async (req, res) => {
+router.post("/", newUserValidation, async (req, res) => {
   const { name, company, address, phone, email, password } = req.body;
   try {
     //hash password
@@ -51,16 +56,48 @@ router.post("/", async (req, res) => {
 
     // const result = await insertUser(req.body);
     const result = await insertUser(newUserObj);
-    console.log(result);
+    console.log("insert result", result);
+    //send the confirmation email
+    await newUserConfirmation({
+      email,
+      verificationLink: verificationURL + result._id + "/" + email,
+    });
     res.json({ status: "success", message: "New user created", result });
   } catch (error) {
-    console.log(error);
     let message =
       "Unable to create new user at the moment, Please try again or contact admin!";
     if (error.message.includes("duplicate key error collection")) {
       message = "this email already has an account";
     }
     res.json({ status: "error", message });
+  }
+});
+
+//Verify user after user is signed up
+router.patch("/verify", async (req, res) => {
+  try {
+    //this data coming from db
+    const { _id, email } = req.body;
+    //update user in db
+    const result = await verifyUser(_id, email);
+    console.log(" result for verify", result.id);
+    if (result && result.id) {
+      return res.json({
+        status: "success",
+        message: "Your account has been activated, you may sign in now",
+      });
+    }
+
+    return res.json({
+      status: "error",
+      message: "Invalid request",
+    });
+  } catch (error) {
+    console.log(error);
+    res.json({
+      status: "error",
+      message: "Invalid request",
+    });
   }
 });
 
@@ -71,13 +108,20 @@ router.post("/login", async (req, res) => {
 
   //hash our password and compare with the db one
   if (!email || !password) {
-    return res.json({ message: "error", status: "Invalid form submission" });
+    return res.json({
+      status: "error",
+      message:
+        "Your account has not been verified, please check your email and verify before you can log in",
+    });
   }
 
   //get user with email from db
 
   const user = await getUserByEmail(email);
-  // console.log(user);
+  console.log("user in login", user);
+  if (!user.isVerified) {
+    return res.json({ status: "error", message: "Invalid form submission" });
+  }
 
   const pwFrmDb = user && user._id ? user.password : null;
 

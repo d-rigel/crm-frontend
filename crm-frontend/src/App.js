@@ -9,6 +9,7 @@ import { AddTicket } from "./pages/new-ticket/AddTicket.page";
 import { TicketLists } from "./pages/ticket-list/TicketLists.page";
 import { Ticket } from "./pages/ticket/Ticket.page";
 import { PrivateRoute } from "./component/private-route/PrivateRoute.comp";
+import { UserVerification } from "./pages/user-verification/UserVerification.page";
 
 function App() {
   return (
@@ -20,6 +21,9 @@ function App() {
           </Route>
           <Route exact path="/registration">
             <Registration />
+          </Route>
+          <Route exact path="/verification/:_id/:email">
+            <UserVerification />
           </Route>
           {/* <DefaultLayout> */}
           <PrivateRoute exact path="/dashboard">

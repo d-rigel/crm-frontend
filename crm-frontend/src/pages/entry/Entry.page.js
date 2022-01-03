@@ -45,6 +45,18 @@ export const Entry = () => {
   //   console.log(email);
   // };
 
+  //workflow for creating reset password page
+  // [] Create password reset page
+  // [] Add request OTP
+  // [] Add redux store with Redux-toolkit to handle the network status
+  // [] sent OTP to email from API (API Already created)
+  // [] Load form to input OTP and new password
+  // [] New password must match confirm password, form validation
+  // [] Connect to API Endpoint (API Already created)
+  // [] Add reducer through Redux-toolkit to handle the network status and preview
+  // [] Send email, OTP and new password to update the password
+  // []
+  // []
   const formSwitcher = (formType) => {
     setFrmLoad(formType);
   };

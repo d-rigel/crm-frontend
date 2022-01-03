@@ -62,6 +62,7 @@ router.post("/", newUserValidation, async (req, res) => {
       email,
       verificationLink: verificationURL + result._id + "/" + email,
     });
+
     res.json({ status: "success", message: "New user created", result });
   } catch (error) {
     let message =
@@ -182,9 +183,11 @@ router.post("/reset-password", resetPassReqValidation, async (req, res) => {
     const setpin = await setPasswordResetPin(email);
     // await mailProcessor(email, setpin.pin);
     await mailProcessor(email, setpin.pin);
+    //...................................................
     // const result = await mailProcessor(email, setpin.pin);
     // if (result && result.messageId) {
-    return res.json({
+    //...............................................................
+    res.json({
       status: "success",
       message:
         "If the email exist in our database, the passoword reset pin will be sent shortly",
@@ -192,8 +195,7 @@ router.post("/reset-password", resetPassReqValidation, async (req, res) => {
   }
   return res.json({
     status: "error",
-    message:
-      "If the email exist in our database, the passoword reset pin will be sent shortly",
+    message: "Oops Request Unsuccessfull!!",
   });
 });
 

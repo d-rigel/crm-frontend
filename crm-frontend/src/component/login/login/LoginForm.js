@@ -134,10 +134,13 @@ export const LoginForm = ({ formSwitcher }) => {
         </Row>
         <Row>
           <Col>
+            <a href="/password-reset">Forget Password?</a>
+          </Col>
+          {/* <Col>
             <a href="#!" onClick={() => formSwitcher("reset")}>
               Forget Password?
             </a>
-          </Col>
+          </Col> */}
         </Row>
 
         <Row className="mt-4">

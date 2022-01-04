@@ -15,6 +15,7 @@ export const ResetPassword = () => {
   const [email, setEmail] = useState("");
   const { isLoading, status, message } = useSelector((state) => state.password);
   const dispatch = useDispatch();
+
   const handleOnResetSubmit = (e) => {
     e.preventDefault();
     console.log("form submit", email);

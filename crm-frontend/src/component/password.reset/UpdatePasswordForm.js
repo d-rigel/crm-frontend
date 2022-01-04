@@ -72,7 +72,7 @@ export const UpdatePasswordForm = () => {
 
     const newPassObj = {
       pin,
-      password,
+      newPassword: password,
       email,
     };
     dispatch(updatePassword(newPassObj));

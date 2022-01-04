@@ -217,7 +217,7 @@ router.patch("/reset-password", updatePassReqValidation, async (req, res) => {
   const getPin = await getPinByEmailPin(email, pin);
 
   //set expiring date
-  if (getPin._id) {
+  if (getPin?._id) {
     const dbDate = getPin.addedAt;
     const expiresIn = 1;
     let expDate = dbDate.setDate(dbDate.getDate() + expiresIn);

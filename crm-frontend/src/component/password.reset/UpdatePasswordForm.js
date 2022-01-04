@@ -8,13 +8,10 @@ import Spinner from "react-bootstrap/Spinner";
 import Alert from "react-bootstrap/Alert";
 // import { userRegistration } from "./regUserAction";
 import { useDispatch, useSelector } from "react-redux";
+import { updatePassword } from "./passwordAction";
 
 const initialState = {
-  name: "Dev Emmanuel",
-  phone: "0503218493",
-  email: "alozie4God@gmail.com",
-  company: "dev-rigel",
-  address: "#12 sam st.",
+  pin: "",
   password: "@Password12",
   confirmPass: "@Password12",
 };
@@ -30,18 +27,19 @@ const passVerificationError = {
 
 export const UpdatePasswordForm = () => {
   const dispatch = useDispatch();
-  const [newUser, setNewUser] = useState(initialState);
+  const [newPassword, setNewPassword] = useState(initialState);
+  console.log(newPassword);
   const [passwordError, setPasswordError] = useState(passVerificationError);
 
-  const { isLoading, status, message } = useSelector(
-    (state) => state.registration
+  const { isLoading, status, message, email } = useSelector(
+    (state) => state.password
   );
 
-  useEffect(() => {}, [newUser]);
+  useEffect(() => {}, [newPassword]);
 
   const handleOnChange = (e) => {
     const { name, value } = e.target;
-    setNewUser({ ...newUser, [name]: value });
+    setNewPassword({ ...newPassword, [name]: value });
 
     if (name === "password") {
       const isLenthy = value.length > 8;
@@ -63,29 +61,29 @@ export const UpdatePasswordForm = () => {
     if (name === "confirmPass") {
       setPasswordError({
         ...passwordError,
-        confirmPass: newUser.password === value,
+        confirmPass: newPassword.password === value,
       });
     }
   };
 
   const handleOnSubmit = (e) => {
     e.preventDefault();
-    // const { name, phone, email, company, address, password } = newUser;
+    const { pin, password } = newPassword;
 
-    // const newRegistration = { name, phone, email, company, address, password };
-    // console.log(newUser);
-    // dispatch(userRegistration(newRegistration));
+    const newPassObj = {
+      pin,
+      password,
+      email,
+    };
+    dispatch(updatePassword(newPassObj));
+    console.log(pin, password);
   };
-
-  //Connect user regitration form to backend REST API and manage network state with Redux Toolkit
-  //email user to a link to verify their email
-  //create frontend page to handle the email verification that client receives in their email
 
   return (
     <Container>
       <Row>
         <Col>
-          <h2 className=" mb-3 mt-3  text-info">User Registration</h2>
+          <h2 className=" mb-3 mt-3  text-info">Update Password</h2>
         </Col>
       </Row>
       <hr />
@@ -93,17 +91,18 @@ export const UpdatePasswordForm = () => {
         <Col>
           {status === "success" && <Alert variant="success">{message}</Alert>}
           {status === "error" && <Alert variant="danger">{message}</Alert>}
+          {isLoading && <Spinner variant="info" animation="border"></Spinner>}
         </Col>
       </Row>
       <Row>
         <Col>
           <Form onSubmit={handleOnSubmit}>
             <Form.Group className="mb-1">
-              <Form.Label>Phone</Form.Label>
+              <Form.Label>Pin</Form.Label>
               <Form.Control
                 type="number"
                 name="pin"
-                // value={newUser.phone}
+                value={newPassword.pin}
                 onChange={handleOnChange}
                 placeholder="OTP"
               />
@@ -114,7 +113,7 @@ export const UpdatePasswordForm = () => {
               <Form.Control
                 type="password"
                 name="password"
-                value={newUser.password}
+                value={newPassword.password}
                 onChange={handleOnChange}
                 placeholder="Password"
               />
@@ -125,7 +124,7 @@ export const UpdatePasswordForm = () => {
               <Form.Control
                 type="password"
                 name="confirmPass"
-                value={newUser.confirmPass}
+                value={newPassword.confirmPass}
                 onChange={handleOnChange}
                 placeholder="Confirm Password"
               />
@@ -175,7 +174,6 @@ export const UpdatePasswordForm = () => {
               disabled={Object.values(passwordError).includes(false)}>
               Submit
             </Button>
-            {isLoading && <Spinner variant="info" animation="border"></Spinner>}
           </Form>
         </Col>
         <Row className="py-2">

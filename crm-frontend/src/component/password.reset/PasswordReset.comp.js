@@ -4,7 +4,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import PropTypes from "prop-types";
+// import PropTypes from "prop-types";
 // import { reqPasswordOtp } from "../../api/passwordApi"
 import { sendPasswordResetOtp } from "./passwordAction";
 import { useDispatch, useSelector } from "react-redux";

@@ -4,6 +4,8 @@ const initOtpState = {
   isLoading: false,
   status: "",
   message: "",
+  showUpdatePassForm: false,
+  email: "",
 };
 
 const passwordReset = createSlice({
@@ -16,7 +18,15 @@ const passwordReset = createSlice({
     otpReqSuccess: (state, action) => {
       state.isLoading = false;
       state.status = "success";
+      state.message = action.payload.message;
+      state.email = action.payload.email;
+      state.showUpdatePassForm = true;
+    },
+    updatePassSuccess: (state, action) => {
+      state.isLoading = false;
+      state.status = "success";
       state.message = action.payload;
+      // state.showOtpForm = false;
     },
     otpReqFail: (state, action) => {
       state.isLoading = false;
@@ -27,6 +37,7 @@ const passwordReset = createSlice({
 });
 
 const { reducer, actions } = passwordReset;
-export const { otpReqPending, otpReqSuccess, otpReqFail } = actions;
+export const { otpReqPending, otpReqSuccess, otpReqFail, updatePassSuccess } =
+  actions;
 
 export default reducer;

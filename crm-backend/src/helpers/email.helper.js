@@ -77,7 +77,7 @@ const mailProcessor = async (email, pin) => {
       "Here is your password reset pin " +
       pin +
       " This pin will expire in 1 day", // plain text body
-    html: `<b>Hello world?</b>
+    html: `<b>Hello!!!</b>
 Here is your pin <b>${pin}</b>
 This pin will expire in 1 day
 `, // html body

@@ -4,6 +4,7 @@ import "./passwordOtpForm.style.css";
 import { ResetPassword } from "../../component/password.reset/PasswordReset.comp";
 import { reqPasswordOtp } from "../../api/passwordApi";
 import { UpdatePasswordForm } from "../../component/password.reset/UpdatePasswordForm";
+import { useDispatch, useSelector } from "react-redux";
 
 //workflow for creating reset password page
 // [] Create password reset page
@@ -17,12 +18,12 @@ import { UpdatePasswordForm } from "../../component/password.reset/UpdatePasswor
 // [] Send email, OTP and new password to update the password
 
 export const PasswordOtpForm = () => {
+  const { showUpdatePassForm } = useSelector((state) => state.password);
   return (
     <div className="password-reset bg-info">
       <>
         <div className=" form-box-reset p-5 bg-light">
-          {/* <ResetPassword /> */}
-          <UpdatePasswordForm />
+          {showUpdatePassForm ? <UpdatePasswordForm /> : <ResetPassword />}
         </div>
       </>
     </div>
